@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Blackfoot Dictionary</string>
+    <string name="edit_message">Enter a word</string>
+    <string name="button_translate">Translate</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Blackfoot Dictionary</string>
+    <string name="input_lang_prompt">Input Language: </string>
+    <string name="input_lang1">English</string>
+    <string name="input_lang2">Blackfoot</string>
+
+</resources>
