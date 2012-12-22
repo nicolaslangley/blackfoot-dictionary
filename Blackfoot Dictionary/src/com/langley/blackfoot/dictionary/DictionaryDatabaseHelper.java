@@ -31,9 +31,7 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
     	//Check whether a database already exists
     	boolean dbExist = checkDatabase();
 
-    	if(dbExist) {
-    		//Database already exists
-    	}else {
+    	if(!dbExist) {
     		//Call getReadableDatabase to create a new empty database
     		this.getReadableDatabase();
     		
@@ -65,9 +63,8 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
    		}
 
    		//Check status of checkDB
-   	 	if(checkDB != null){
+   	 	if(checkDB == null){
    	 	 
-    		checkDB.close();
     		return false;
     	}
  
