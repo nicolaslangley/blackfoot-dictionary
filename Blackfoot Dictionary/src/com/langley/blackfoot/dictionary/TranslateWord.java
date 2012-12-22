@@ -43,7 +43,7 @@ public class TranslateWord extends Activity {
         	cursor.moveToFirst();
         	if (cursor.getCount() != 0) {
         		
-        		//Depending on whether input type is blackfoot or english return different word
+        		//Depending on whether input type is Blackfoot or English return different word
         		if (word[1] == null || word[1].equals("English")) {
         			translatedWord = cursor.getString(2);
         		} else {
@@ -67,10 +67,10 @@ public class TranslateWord extends Activity {
         TextView tw = (TextView) findViewById(R.id.translateView);
         tw.setText(translatedWord);
         
-        
-        WebView engine = (WebView) findViewById(R.id.webLink);  
-        engine.loadUrl("http://www.native-languages.org/blackfoot_guide.htm");
-
+        if (!translatedWord.equals("This word is not in our database")){
+        	WebView engine = (WebView) findViewById(R.id.webLink);  
+        	engine.loadUrl("http://www.native-languages.org/blackfoot_guide.htm");
+        }
     }
 	
 }

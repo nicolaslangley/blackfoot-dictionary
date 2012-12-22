@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.*;
 
-
-
 public class DictionaryDatabaseHelper extends SQLiteOpenHelper {	
 	
 	//Initialize Database path and name variables
@@ -16,7 +14,6 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
 	//Define Database and Context objects
 	private SQLiteDatabase dictionaryDatabase;
 	private Context dictionaryContext;
-	
 	
 	//Constructor for DictionaryDatabaseHelper
 	public DictionaryDatabaseHelper(Context context) {
@@ -38,13 +35,10 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
     		//Attempt to copy the stored database to this new empty one
     		try {
     			copyDatabase();	
-    			
     		} catch (IOException e) {
-    			
     			throw new Error("Error copying database");
     		}
         }
-
     }
 
     //Check whether a database exists and return a boolean
