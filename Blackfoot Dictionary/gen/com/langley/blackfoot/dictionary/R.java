@@ -23,12 +23,12 @@ public final class R {
         public static final int button=0x7f080004;
         public static final int inputLangText=0x7f080002;
         public static final int inputLangToggle=0x7f080003;
+        public static final int ipaView=0x7f080007;
         public static final int main=0x7f080000;
         public static final int menu_settings=0x7f080008;
         public static final int query=0x7f080001;
         public static final int translate1=0x7f080005;
         public static final int translateView=0x7f080006;
-        public static final int webLink=0x7f080007;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -51,7 +51,7 @@ public final class R {
         public static final int AppTheme=0x7f060000;
         /**  Any customizations for your app running on pre-3.0 devices here 
  Any customizations for your app running on 3.0+ devices here 
- Any customizations for your app running on 3.0+ devices here 
+ Any customizations for your app running on 4.0+ devices here 
          */
         public static final int LightTheme=0x7f060001;
     }

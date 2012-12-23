@@ -6,9 +6,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.*;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.widget.TextView;
+import java.util.regex.*;
 
 public class TranslateWord extends Activity {
 	
@@ -57,19 +59,51 @@ public class TranslateWord extends Activity {
         	translatedWord = "This word is not in our database";
         }
        
-        //Close dictionaryDatabaseHelper object
+        // Close dictionaryDatabaseHelper object
         dictionary.close();
-        
-        //Display translated word
-        //Display translated word
+
+        // Display translated word
         setContentView(R.layout.translated);
         
         TextView tw = (TextView) findViewById(R.id.translateView);
         tw.setText(translatedWord);
         
         if (!translatedWord.equals("This word is not in our database")){
-        	WebView engine = (WebView) findViewById(R.id.webLink);  
-        	engine.loadUrl("http://www.native-languages.org/blackfoot_guide.htm");
+        	
+            // Create IPA pronounciation string
+            // Diphthong replacements
+            String ipaWord = translatedWord.replaceAll("AI", "ə");
+            ipaWord = ipaWord.replaceAll("AO", "ɑʷ");
+            ipaWord = ipaWord.replaceAll("OI", "ɔɪ");
+            
+            // Long vowel replacements
+            ipaWord = ipaWord.replaceAll("AA", "ɑː");
+            ipaWord = ipaWord.replaceAll("II", "ɪː");
+            ipaWord = ipaWord.replaceAll("OO", "ɘʊ");
+            
+            // Vowel replacements
+            ipaWord = ipaWord.replaceAll("A", "ɑ");
+            ipaWord = ipaWord.replaceAll("I", "ɪ");
+            ipaWord = ipaWord.replaceAll("O", "ɘʊ");   
+            
+            // Long consonant replacements
+            ipaWord = ipaWord.replaceAll("NN", "nː");
+            ipaWord = ipaWord.replaceAll("MM", "mː");
+            ipaWord = ipaWord.replaceAll("SS", "sː");
+            
+            // Consonant replacements
+            ipaWord = ipaWord.replaceAll("N", "n");
+            ipaWord = ipaWord.replaceAll("M", "m");        
+            ipaWord = ipaWord.replaceAll("S", "s");
+            ipaWord = ipaWord.replaceAll("'", "?");
+            ipaWord = ipaWord.replaceAll("P", "b");
+            ipaWord = ipaWord.replaceAll("T", "d");
+            ipaWord = ipaWord.replaceAll("K", "g");
+            
+            // Display IPA pronounciation string
+        	TextView ipaView = (TextView) findViewById(R.id.ipaView);
+        	ipaView.setText(ipaWord);
+        
         }
     }
 	
