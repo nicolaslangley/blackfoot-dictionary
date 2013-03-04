@@ -1,16 +1,14 @@
 package com.langley.blackfoot.dictionary;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.*;
 import android.database.sqlite.SQLiteException;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.webkit.WebView;
 import android.widget.TextView;
-import java.util.regex.*;
 
 public class TranslateWord extends Activity {
 	
@@ -41,7 +39,7 @@ public class TranslateWord extends Activity {
        
         //Check whether given word is in the database and store it in translatedWord
         try {
-        	Cursor cursor = dictionary.getDictionaryDatabase().query("Words", null, "english= '" + word[0].toLowerCase().trim() + "' or blackfoot= '" + word[0].toUpperCase().trim() + "' ", null, null, null, null);
+        	Cursor cursor = dictionary.getDictionaryDatabase().query("Words", null, "english= '" + word[0].toLowerCase(Locale.US).trim() + "' or blackfoot= '" + word[0].toUpperCase(Locale.US).trim() + "' ", null, null, null, null);
         	cursor.moveToFirst();
         	if (cursor.getCount() != 0) {
         		
