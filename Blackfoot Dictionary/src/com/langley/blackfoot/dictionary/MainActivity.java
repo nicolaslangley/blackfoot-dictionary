@@ -1,23 +1,27 @@
 package com.langley.blackfoot.dictionary;
 
 import android.os.Bundle;
+import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
-//import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-//import android.support.v4.app.NavUtils;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 /*TO-DO
 1 - refine layout and presentation
-2 - analyze translated string to give phonetic pronounciation??
-3 - increase size of database
-4 - find way to link database online so it doesn't have to be updated manually?
-
+2 - Add fragments for drop-down menu
 */
+
 public class MainActivity extends Activity {
+	
+	
+	
 	
 	//Definition of EXTRA_WORD to send to TranslateWord.java
 	public final static String EXTRA_WORD = "com.langley.blackfoot.dictionary.WORD";
@@ -27,6 +31,26 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // Spinner for Drop-Down Navigation
+        SpinnerAdapter adapter = ArrayAdapter.createFromResource(this, R.array.action_list,
+  	          android.R.layout.simple_spinner_dropdown_item);
+        
+        // Set action bar to have navigation mode
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        
+        // Navigation listener for selection
+        OnNavigationListener navigationListener = new OnNavigationListener() {
+        	 
+            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+                Toast.makeText(getBaseContext(), "You selected : " + itemPosition  , Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        };
+ 
+        // Set drop down and navigation listener action bar
+        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
+        
         
     }
 
@@ -54,9 +78,6 @@ public class MainActivity extends Activity {
     	EditText editText = (EditText) findViewById(R.id.query);
     	String[] toTranslate = {editText.getText().toString(), inputLang};
     	intent.putExtra(EXTRA_WORD, toTranslate);
-    	startActivity(intent);
-    	
-    }
-
-    
+    	startActivity(intent);	
+    }   
 }

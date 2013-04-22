@@ -17,14 +17,12 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
 	
 	//Constructor for DictionaryDatabaseHelper
 	public DictionaryDatabaseHelper(Context context) {
-    	
     	super(context, DB_name, null, 1);
     	this.dictionaryContext = context;
     }	
 
     //Creates a empty database on the system and rewrites it with your own database.
     public void createDatabase() throws IOException {
-    
     	//Check whether a database already exists
     	boolean dbExist = checkDatabase();
 
@@ -43,32 +41,26 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
 
     //Check whether a database exists and return a boolean
     private boolean checkDatabase() {
-
     	SQLiteDatabase checkDB = null;
    		
    		//Check if database exists and if it does store database in checkDB
    		try {
    			String myPath = DB_path + DB_name;
    			checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-
    		} catch(SQLiteException e) {
    			//Database doesn't exist so do nothing
-
    		}
 
    		//Check status of checkDB
    	 	if(checkDB == null){
-   	 	 
     		return false;
     	}
  
     	return true;
-
    }
 
     //Copy database from assets folder to empty database
     private void copyDatabase() throws IOException{
-
     	//Set local database to input stream
     	InputStream myInput = dictionaryContext.getAssets().open(DB_name);
 
