@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
 public class ListContentFragment extends Fragment {
-    private String mText;
+	// Fragment class for displaying the text menu
+	private String mText;
 
     @Override
     public void onAttach(Activity activity) {
