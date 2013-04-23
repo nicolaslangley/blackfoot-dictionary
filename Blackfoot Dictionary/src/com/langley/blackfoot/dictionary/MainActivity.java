@@ -7,25 +7,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 /*TO-DO
 1 - refine layout and presentation
 2 - Add fragments for drop-down menu
 */
 
-public class MainActivity extends Activity {
-	
-	
-	
+public class MainActivity extends Activity implements OnItemSelectedListener {
 	
 	//Definition of EXTRA_WORD to send to TranslateWord.java
 	public final static String EXTRA_WORD = "com.langley.blackfoot.dictionary.WORD";
 	public static String inputLang;
+	private Spinner inputLangSpinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,15 +33,14 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         // Spinner for Drop-Down Navigation
-        SpinnerAdapter adapter = ArrayAdapter.createFromResource(this, R.array.action_list,
+        SpinnerAdapter actionBarAdapter = ArrayAdapter.createFromResource(this, R.array.action_list,
   	          android.R.layout.simple_spinner_dropdown_item);
         
         // Set action bar to have navigation mode
         getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         
         // Navigation listener for selection
-        OnNavigationListener navigationListener = new OnNavigationListener() {
-        	 
+        OnNavigationListener navigationListener = new OnNavigationListener() { 	 
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
                 Toast.makeText(getBaseContext(), "You selected : " + itemPosition  , Toast.LENGTH_SHORT).show();
                 return false;
@@ -49,8 +48,14 @@ public class MainActivity extends Activity {
         };
  
         // Set drop down and navigation listener action bar
-        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
+        getActionBar().setListNavigationCallbacks(actionBarAdapter, navigationListener);
         
+        // Set up spinner for input language choice
+        inputLangSpinner = (Spinner) findViewById(R.id.inputLangSpinner);
+        inputLangSpinner.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> inputLangAdapter = ArrayAdapter.createFromResource(this,R.array.lang_list, android.R.layout.simple_spinner_item);
+        inputLangAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputLangSpinner.setAdapter(inputLangAdapter);
         
     }
 
@@ -61,15 +66,13 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    public void onToggleClicked(View view) {
-        // Is the toggle on?
-        boolean on = ((ToggleButton) view).isChecked();
-        
-        if (on) {
-            inputLang = "Blackfoot";
-        } else {
-            inputLang = "English";
-        }
+    // Handle spinner item selection
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+    	inputLang = inputLangSpinner.getSelectedItem().toString();
+    }
+    
+    public void onNothingSelected (AdapterView<?> parent) {
+    	// Do nothing
     }
     
     //Creates new intent and gets text from input to sent to TranslateWord.java

@@ -10,6 +10,7 @@ package com.langley.blackfoot.dictionary;
 public final class R {
     public static final class array {
         public static final int action_list=0x7f040000;
+        public static final int lang_list=0x7f040001;
     }
     public static final class attr {
     }
@@ -24,8 +25,8 @@ public final class R {
     }
     public static final class id {
         public static final int button=0x7f090004;
+        public static final int inputLangSpinner=0x7f090003;
         public static final int inputLangText=0x7f090002;
-        public static final int inputLangToggle=0x7f090003;
         public static final int ipaView=0x7f090007;
         public static final int main=0x7f090000;
         public static final int menu_settings=0x7f090008;
@@ -51,11 +52,12 @@ public final class R {
         public static final int title_activity_main=0x7f060004;
     }
     public static final class style {
-        public static final int AppTheme=0x7f070000;
-        /**  Any customizations for your app running on pre-3.0 devices here 
- Any customizations for your app running on 3.0+ devices here 
+        public static final int AppTheme=0x7f070001;
+        public static final int CustomActionBar=0x7f070002;
+        public static final int CustomActionBarStyle=0x7f070000;
+        /**  Any customizations for your app running on 3.0+ devices here 
  Any customizations for your app running on 4.0+ devices here 
          */
-        public static final int LightTheme=0x7f070001;
+        public static final int LightTheme=0x7f070003;
     }
 }

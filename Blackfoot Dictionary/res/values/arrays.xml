@@ -5,4 +5,9 @@
         <item>History</item>
         <item>About</item>
     </string-array>
+    
+    <string-array name="lang_list">
+        <item>English</item>
+        <item>Blackfoot</item>
+    </string-array>
 </resources>
