@@ -13,11 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
 /*TO-DO
 1 - refine layout and presentation
 2 - Add fragments for drop-down menu
+3 - fix action bar position for new activities
 */
 
 public class MainActivity extends Activity implements OnItemSelectedListener {
@@ -26,6 +26,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
 	public final static String EXTRA_WORD = "com.langley.blackfoot.dictionary.WORD";
 	public static String inputLang;
 	private Spinner inputLangSpinner;
+	private Activity current = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,24 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         setContentView(R.layout.activity_main);
         
         // Spinner for Drop-Down Navigation
-        SpinnerAdapter actionBarAdapter = ArrayAdapter.createFromResource(this, R.array.action_list,
+        SpinnerAdapter actionBarAdapter = ArrayAdapter.createFromResource(this, R.array.actionbar_list_main,
   	          android.R.layout.simple_spinner_dropdown_item);
         
         // Set action bar to have navigation mode
         getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        getActionBar().setSelectedNavigationItem(0);
+
         
         // Navigation listener for selection
         OnNavigationListener navigationListener = new OnNavigationListener() { 	 
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-                Toast.makeText(getBaseContext(), "You selected : " + itemPosition  , Toast.LENGTH_SHORT).show();
+            	if (itemPosition == 1) {
+            		Intent intent = new Intent(current, History.class);
+            		startActivity(intent);
+            	} else if (itemPosition == 2) {
+            		Intent intent = new Intent(current, About.class);
+            		startActivity(intent);
+            	}
                 return false;
             }
         };

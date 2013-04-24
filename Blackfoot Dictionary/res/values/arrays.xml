@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="action_list">
+    <string-array name="actionbar_list_main">
         <item>Translate</item>
         <item>History</item>
         <item>About</item>

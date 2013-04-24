@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TranslateWord"
-        ></activity>
-        <activity android:name=".DictionaryDatabaseHelper"
-        ></activity>
+        <activity android:name=".TranslateWord"/>
+        <activity android:name=".DictionaryDatabaseHelper"/>
+        <activity android:name=".History"/>
+        <activity android:name=".About"/>
     </application>
 
 </manifest>
