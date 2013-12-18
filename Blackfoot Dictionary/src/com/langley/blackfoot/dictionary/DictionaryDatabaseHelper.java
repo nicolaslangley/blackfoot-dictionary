@@ -115,13 +115,14 @@ public class DictionaryDatabaseHelper extends SQLiteOpenHelper {
 	//Override onUpgrade using database and old and new versions
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
 	}
 
+    // Getter method for Dictionary Database
 	public SQLiteDatabase getDictionaryDatabase() {
 		return dictionaryDatabase;
 	}
 
+    // Setter method for Dictionary Database
 	public void setDictionaryDatabase(SQLiteDatabase dictionaryDatabase) {
 		this.dictionaryDatabase = dictionaryDatabase;
 	}
